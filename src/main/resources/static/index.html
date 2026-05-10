@@ -1,147 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>TheSnehaMoments</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Sneh Moments — Luxury Event Planning</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cinzel:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
-<div class="bg-animation"></div>
 
-<!-- Navigation -->
-<nav>
-    <div class="nav-container">
-        <div class="logo">TheSnehaMoments</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#events">Events</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <button class="btn-login" id="navLoginBtn">Login with Google</button>
-        </div>
-        <div class="user-profile" id="userProfile">
-            <img class="user-avatar" id="userAvatar" src="" alt="User">
-            <span class="user-name" id="userName"></span>
-            <button class="logout-btn" id="logoutBtn">Logout</button>
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- ======== NAVBAR ======== -->
+<header class="navbar" id="navbar">
+    <div class="nav-brand">
+        <span class="nav-logo">✦</span>
+        <div>
+            <p class="nav-title">THE SNEH MOMENTS</p>
+            <p class="nav-sub">elegant events</p>
         </div>
     </div>
-</nav>
+    <nav class="nav-links">
+        <a href="#home" class="nav-link active" data-label="Home">Home</a>
+        <a href="#about" class="nav-link" data-label="About">About</a>
+        <a href="#services" class="nav-link" data-label="Services">Services</a>
+        <a href="#portfolio" class="nav-link" data-label="Portfolio">Portfolio</a>
+        <a href="#offerings" class="nav-link" data-label="Offerings">Offerings</a>
+        <a href="#contact" class="nav-link cta-nav" data-label="Contact">Contact</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+</header>
 
-<!-- Hero Section -->
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileClose">✕</button>
+    <a href="#home" class="mobile-nav-link">Home</a>
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#services" class="mobile-nav-link">Services</a>
+    <a href="#portfolio" class="mobile-nav-link">Portfolio</a>
+    <a href="#offerings" class="mobile-nav-link">Offerings</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+</div>
+
+<!-- ======== HERO ======== -->
 <section class="hero" id="home">
+    <div class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="bokeh" id="bokeh"></div>
+    </div>
     <div class="hero-content">
-        <div class="hero-text">
-            <h1>Unforgettable Moments Start Here</h1>
-            <p>Discover, book, and experience the world's most exciting events. From concerts to conferences, we've got your ticket to extraordinary moments.</p>
-            <div class="hero-buttons">
-                <button class="btn-primary" onclick="document.getElementById('events').scrollIntoView({behavior: 'smooth'})">Explore Events</button>
-                <button class="btn-secondary" id="heroLoginBtn">Get Started</button>
+        <p class="hero-eyebrow reveal-up">Luxury Event Planning</p>
+        <h1 class="hero-headline reveal-up delay-1">
+            Turning Moments<br />
+            <em>into Lifetime</em><br />
+            Memories
+        </h1>
+        <p class="hero-sub reveal-up delay-2">
+            Crafting bespoke event experiences that blend elegance,<br />
+            emotion, and unforgettable magic. Your story, beautifully told.
+        </p>
+        <div class="hero-btns reveal-up delay-3">
+            <a href="#contact" class="btn btn-gold">Plan Your Event</a>
+            <a href="#portfolio" class="btn btn-outline">Explore Our Work</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll to Explore</span>
+        <div class="scroll-line"></div>
+    </div>
+    <div class="hero-stats">
+        <div class="stat reveal-up delay-2">
+            <span class="stat-num" data-target="500">0</span><span>+</span>
+            <p>Events Curated</p>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat reveal-up delay-3">
+            <span class="stat-num" data-target="12">0</span><span>+</span>
+            <p>Years of Excellence</p>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat reveal-up delay-4">
+            <span class="stat-num" data-target="98">0</span><span>%</span>
+            <p>Happy Couples</p>
+        </div>
+    </div>
+</section>
+
+<!-- ======== ABOUT ======== -->
+<section class="about" id="about">
+    <div class="about-photos">
+        <div class="about-photo-grid">
+            <div class="photo-card tall reveal-left">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Wedding Couple" loading="lazy" />
+            </div>
+            <div class="photo-card small reveal-up delay-1">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400" alt="Floral Decor" loading="lazy" />
+            </div>
+            <div class="photo-card small reveal-up delay-2">
+                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400" alt="Celebration" loading="lazy" />
+            </div>
+            <div class="photo-card medium reveal-up delay-3">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500" alt="Table Setting" loading="lazy" />
+            </div>
+            <div class="photo-badge">Love in Bloom ✦</div>
+        </div>
+    </div>
+    <div class="about-content reveal-right">
+        <p class="section-eyebrow">Our Story & Philosophy</p>
+        <h2 class="section-heading">Our Journey of<br /><em>Elegance & Passion</em></h2>
+        <p class="section-sub gold-text">Crafting Unforgettable, Personalized Experiences</p>
+        <p class="about-body">
+            At The Sneh Moments, we are driven by an unwavering passion to orchestrate exquisite celebrations that define luxury and resonate emotionally. Named after <em>'Sneh'</em> — meaning love — our passion lies in crafting visually stunning and deeply personal luxury events that honor your journey.
+        </p>
+        <p class="about-body">
+            Our dedication lies in creating bespoke, immersive events where meticulous planning meets creative brilliance. We curate every detail with precision, personalization, and a commitment to authenticity — ensuring each moment is a cherished memory.
+        </p>
+        <a href="#services" class="btn btn-gold mt-2">Explore Our Philosophy</a>
+    </div>
+</section>
+
+<!-- ======== SERVICES ======== -->
+<section class="services" id="services">
+    <div class="services-header">
+        <p class="section-eyebrow">Services Section</p>
+        <h2 class="section-heading">Our Curated<br /><em>Experiences</em></h2>
+        <p class="section-body-text">Crafting unforgettable moments, tailored to perfection</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card reveal-up delay-1" data-service="weddings">
+            <div class="service-img-wrap">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Weddings" loading="lazy" />
+                <div class="service-overlay"></div>
+            </div>
+            <div class="service-content">
+                <h3>Weddings</h3>
+                <p>From intimate ceremonies to grand celebrations, we bring your dream wedding to life with unparalleled elegance.</p>
+                <a href="#contact" class="service-btn">View Details ↗</a>
             </div>
         </div>
-        <div class="hero-image">
-            <div class="event-cards-showcase">
-                <div class="showcase-card">
-                    <h4>🎵 Music Festival</h4>
-                    <p>Live performances from top artists worldwide</p>
-                </div>
-                <div class="showcase-card">
-                    <h4>🎨 Art Exhibitions</h4>
-                    <p>Discover contemporary and classical artworks</p>
-                </div>
-                <div class="showcase-card">
-                    <h4>💼 Business Events</h4>
-                    <p>Network with industry leaders</p>
-                </div>
-                <div class="showcase-card">
-                    <h4>🎭 Theater Shows</h4>
-                    <p>Broadway hits and local productions</p>
-                </div>
+        <div class="service-card reveal-up delay-2" data-service="corporate">
+            <div class="service-img-wrap">
+                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800" alt="Corporate Events" loading="lazy" />
+                <div class="service-overlay"></div>
+            </div>
+            <div class="service-content">
+                <h3>Corporate Events</h3>
+                <p>Elevate your brand with flawlessly executed corporate events, galas, product launches, and conferences.</p>
+                <a href="#contact" class="service-btn">View Details ↗</a>
+            </div>
+        </div>
+        <div class="service-card reveal-up delay-3" data-service="birthday">
+            <div class="service-img-wrap">
+                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800" alt="Birthday Celebrations" loading="lazy" />
+                <div class="service-overlay"></div>
+            </div>
+            <div class="service-content">
+                <h3>Birthday Celebrations</h3>
+                <p>Celebrate life's milestones in style with bespoke birthday parties designed for sophistication, joy, and unforgettable memories.</p>
+                <a href="#contact" class="service-btn">View Details ↗</a>
+            </div>
+        </div>
+        <div class="service-card reveal-up delay-4" data-service="private">
+            <div class="service-img-wrap">
+                <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800" alt="Private Parties" loading="lazy" />
+                <div class="service-overlay"></div>
+            </div>
+            <div class="service-content">
+                <h3>Private Parties</h3>
+                <p>Host exclusive and refined private gatherings, from sophisticated dinner parties to lively celebrations tailored to your vision.</p>
+                <a href="#contact" class="service-btn">View Details ↗</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Events Section -->
-<section class="events-section" id="events">
-    <div class="section-header">
-        <h2>Featured Events</h2>
-        <p>Handpicked experiences just for you</p>
+<!-- ======== PORTFOLIO / GALLERY ======== -->
+<section class="portfolio" id="portfolio">
+    <div class="portfolio-header">
+        <p class="section-eyebrow">Gallery of Moments</p>
+        <h2 class="section-heading">Capturing the Essence of<br /><em>Your Special Occasions</em></h2>
     </div>
-    <div class="events-grid" id="eventsGrid">
-        <!-- Events will be dynamically loaded here -->
+    <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="weddings">Weddings</button>
+        <button class="filter-btn" data-filter="corporate">Corporate</button>
+        <button class="filter-btn" data-filter="parties">Parties</button>
+        <button class="filter-btn" data-filter="milestones">Milestones</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item large" data-category="weddings">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900" alt="Wedding" loading="lazy" />
+            <div class="gallery-caption">
+                <p>Rahul & Anjali's Reception – The Taj, Mumbai</p>
+                <span>↗</span>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600" alt="Wedding" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-category="corporate">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600" alt="Corporate" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-category="parties">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600" alt="Party" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600" alt="Wedding Decor" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-category="milestones">
+            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600" alt="Milestone" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-category="corporate">
+            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600" alt="Corporate Event" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600" alt="Wedding Ceremony" loading="lazy" />
+        </div>
+        <div class="gallery-item" data-category="parties">
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600" alt="Private Party" loading="lazy" />
+        </div>
     </div>
 </section>
 
-<!-- Login Modal -->
-<div class="modal" id="loginModal">
-    <div class="modal-content">
-        <button class="close-modal" onclick="closeModal('loginModal')">&times;</button>
-        <h2>Welcome Back</h2>
-        <button class="google-login-btn" id="googleLoginBtn">
-            <svg width="24" height="24" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
-            Continue with Google
-        </button>
-        <div class="divider">or</div>
-        <form id="emailLoginForm">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="loginEmail" placeholder="your@email.com" required>
+<!-- ======== OFFERINGS ======== -->
+<section class="offerings" id="offerings">
+    <div class="offerings-bg"></div>
+    <div class="offerings-header">
+        <h2 class="section-heading light">Our Signature<br /><em>Offerings</em></h2>
+        <p class="section-body-text light">We transform your vision into extraordinary experiences.</p>
+    </div>
+    <div class="offerings-slider" id="offeringsSlider">
+        <div class="offering-card active">
+            <div class="offering-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="20" r="8" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M16 48c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8 30l6 6 10-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h3>Personalized Planning</h3>
+            <p>We create bespoke strategies tailored to your unique style, preferences, and vision, ensuring every detail reflects you.</p>
+            <a href="#contact" class="offering-arrow">→</a>
+        </div>
+        <div class="offering-card">
+            <div class="offering-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="35" width="40" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M20 35V20c0-5.523 4.477-10 10-10s10 4.477 10 10v15" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="30" cy="43" r="2" fill="currentColor"/>
+                </svg>
+            </div>
+            <h3>Creative Design Concepts</h3>
+            <p>From mood boards to immersive decor, we bring imaginative and luxurious design elements to life, setting the perfect tone.</p>
+            <a href="#contact" class="offering-arrow">→</a>
+        </div>
+        <div class="offering-card">
+            <div class="offering-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="18" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M30 18v12l8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h3>End-to-End Management</h3>
+            <p>Relax while we handle everything from vendor coordination and logistics to scheduling and day-of execution, ensuring a flawless experience.</p>
+            <a href="#contact" class="offering-arrow">→</a>
+        </div>
+        <div class="offering-card">
+            <div class="offering-icon">
+                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 45L30 15l15 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20 35h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <h3>Seamless Execution</h3>
+            <p>Our dedicated team is on-site to orchestrate every moment with precision, ensuring your event unfolds seamlessly and spectacularly.</p>
+            <a href="#contact" class="offering-arrow">→</a>
+        </div>
+    </div>
+    <div class="offerings-dots" id="offeringsDots">
+        <button class="dot active" data-index="0"></button>
+        <button class="dot" data-index="1"></button>
+        <button class="dot" data-index="2"></button>
+        <button class="dot" data-index="3"></button>
+    </div>
+</section>
+
+<!-- ======== TESTIMONIALS ======== -->
+<section class="testimonials" id="testimonials">
+    <div class="testimonials-header">
+        <p class="section-eyebrow">What Couples Say</p>
+        <h2 class="section-heading">Stories of<br /><em>Joy & Love</em></h2>
+    </div>
+    <div class="testimonials-track" id="testimonialsTrack">
+        <div class="testimonial-card">
+            <div class="quote-icon">❝</div>
+            <p>"The Sneh Moments made our wedding feel like a fairy tale. Every detail was perfectly curated, from the floral arrangements to the lighting — pure magic."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">P</div>
+                <div>
+                    <strong>Priya & Arjun Mehta</strong>
+                    <span>Wedding at ITC Grand Bharat, Gurgaon</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="quote-icon">❝</div>
+            <p>"Our corporate gala exceeded every expectation. The team handled everything flawlessly, and our guests are still talking about it months later."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">R</div>
+                <div>
+                    <strong>Rohan Kapoor</strong>
+                    <span>Annual Gala, Tata Group, Mumbai</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="quote-icon">❝</div>
+            <p>"From our first consultation to the last dance, Sneh Moments understood our vision completely. They brought a warmth and elegance that no one else could have delivered."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">S</div>
+                <div>
+                    <strong>Sneha & Dev Sharma</strong>
+                    <span>Destination Wedding, Udaipur</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="testimonial-controls">
+        <button class="t-btn" id="tPrev">←</button>
+        <div class="t-dots" id="tDots">
+            <span class="t-dot active"></span>
+            <span class="t-dot"></span>
+            <span class="t-dot"></span>
+        </div>
+        <button class="t-btn" id="tNext">→</button>
+    </div>
+</section>
+
+<!-- ======== CONTACT ======== -->
+<section class="contact" id="contact">
+    <div class="contact-left reveal-left">
+        <p class="section-eyebrow">Get in Touch</p>
+        <h2 class="section-heading">Let's Plan Your<br /><em>Perfect Moment</em></h2>
+        <p class="about-body">
+            Every extraordinary event begins with a conversation. Tell us about your dream, and we'll transform it into an experience that exceeds every expectation.
+        </p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-icon">✉</span>
+                <span>hello@thesnehmoments.com</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">✆</span>
+                <span>+91 98765 43210</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">⌖</span>
+                <span>Mumbai · Delhi · Ahmedabad</span>
+            </div>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Pinterest</a>
+            <a href="#" class="social-link">Facebook</a>
+        </div>
+    </div>
+    <div class="contact-right reveal-right">
+        <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="fname" name="firstName" placeholder=" " required autocomplete="off" />
+                    <label for="fname">First Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lname" name="lastName" placeholder=" " required autocomplete="off" />
+                    <label for="lname">Last Name</label>
+                </div>
             </div>
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="loginPassword" placeholder="••••••••" required>
+                <input type="email" id="email" name="email" placeholder=" " required autocomplete="off" />
+                <label for="email">Email Address</label>
             </div>
-            <button type="submit" class="btn-primary" style="width: 100%;">Sign In</button>
+            <div class="form-group">
+                <input type="tel" id="phone" name="phone" placeholder=" " autocomplete="off" />
+                <label for="phone">Phone Number</label>
+            </div>
+            <div class="form-group">
+                <select id="eventType" name="eventType" required>
+                    <option value="" disabled selected></option>
+                    <option value="wedding">Wedding</option>
+                    <option value="corporate">Corporate Event</option>
+                    <option value="birthday">Birthday Celebration</option>
+                    <option value="private">Private Party</option>
+                    <option value="other">Other</option>
+                </select>
+                <label for="eventType" class="select-label">Event Type</label>
+            </div>
+            <div class="form-group">
+                <input type="date" id="eventDate" name="eventDate" placeholder=" " />
+                <label for="eventDate">Event Date (approx.)</label>
+            </div>
+            <div class="form-group">
+                <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+                <label for="message">Tell Us Your Vision</label>
+            </div>
+            <button type="submit" class="btn btn-gold full-width" id="submitBtn">
+                <span class="btn-text">Send Your Enquiry</span>
+                <span class="btn-loader" style="display:none">Sending...</span>
+            </button>
+            <div class="form-success" id="formSuccess" style="display:none">
+                ✦ Thank you! We'll be in touch within 24 hours.
+            </div>
         </form>
     </div>
-</div>
+</section>
 
-<!-- Booking Modal -->
-<div class="modal" id="bookingModal">
-    <div class="modal-content">
-        <button class="close-modal" onclick="closeModal('bookingModal')">&times;</button>
-        <h2>Book Your Ticket</h2>
-        <div id="bookingForm">
-            <form id="ticketBookingForm">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="bookingName" required>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="bookingEmail" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="bookingPhone" required>
-                </div>
-                <div class="form-group">
-                    <label>Number of Tickets</label>
-                    <select id="ticketQuantity" required>
-                        <option value="1">1 Ticket</option>
-                        <option value="2">2 Tickets</option>
-                        <option value="3">3 Tickets</option>
-                        <option value="4">4 Tickets</option>
-                        <option value="5">5 Tickets</option>
-                    </select>
-                </div>
-                <div class="spinner" id="bookingSpinner"></div>
-                <div class="success-message" id="successMessage">
-                    ✓ Booking confirmed! Check your email for details.
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Confirm Booking</button>
-            </form>
+<!-- ======== FOOTER ======== -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <span class="nav-logo large">✦</span>
+            <p class="nav-title large">THE SNEH MOMENTS</p>
+            <p class="footer-tagline">Turning Moments into Lifetime Memories</p>
         </div>
-        <div id="ticketDisplay" style="display: none;">
-            <!-- Ticket will be displayed here -->
+        <div class="footer-links-group">
+            <p class="footer-group-title">Pages</p>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+        </div>
+        <div class="footer-links-group">
+            <p class="footer-group-title">Services</p>
+            <a href="#services">Weddings</a>
+            <a href="#services">Corporate Events</a>
+            <a href="#services">Birthday Celebrations</a>
+            <a href="#services">Private Parties</a>
+        </div>
+        <div class="footer-links-group">
+            <p class="footer-group-title">Connect</p>
+            <a href="#">Instagram</a>
+            <a href="#">Pinterest</a>
+            <a href="#">Facebook</a>
+            <a href="#contact">Get in Touch</a>
         </div>
     </div>
+    <div class="footer-bottom">
+        <p>© 2025 The Sneh Moments. All rights reserved. Crafted with love.</p>
+        <p>Privacy Policy · Terms of Service</p>
+    </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
 </div>
+
+<script src="js/script.js"></script>
 </body>
 </html>

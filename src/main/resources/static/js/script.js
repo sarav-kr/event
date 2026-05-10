@@ -1,169 +1,95 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.getElementById("navbar");
+    const hamburger = document.getElementById("hamburger");
+    const mobileNav = document.getElementById("mobileNav");
+    const mobileClose = document.getElementById("mobileClose");
+    const galleryItems = [...document.querySelectorAll(".gallery-item")];
+    const filterButtons = [...document.querySelectorAll(".filter-btn")];
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const contactForm = document.getElementById("contactForm");
+    const formSuccess = document.getElementById("formSuccess");
 
-    let currentUser = null;
-    let selectedEvent = null;
-
-    // =========================
-    // INITIALIZE APP
-    // =========================
-    async function initializeApp() {
-        await displayEvents();
-
-        const savedUser = localStorage.getItem('currentUser');
-        if (savedUser) {
-            currentUser = JSON.parse(savedUser);
-            updateUIForLoggedInUser();
-        }
+    function closeMobileNav() {
+        mobileNav?.classList.remove("open");
     }
 
-    // =========================
-    // FETCH EVENTS FROM BACKEND
-    // =========================
-    async function displayEvents() {
-        try {
-            const response = await fetch("http://localhost:8080/api/events");
-            const events = await response.json();
+    hamburger?.addEventListener("click", () => {
+        mobileNav?.classList.toggle("open");
+    });
 
-            const eventsGrid = document.getElementById('eventsGrid');
-            eventsGrid.innerHTML = '';
+    mobileClose?.addEventListener("click", closeMobileNav);
+    document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        link.addEventListener("click", closeMobileNav);
+    });
 
-            events.forEach(event => {
-                const eventCard = document.createElement('div');
-                eventCard.className = 'event-card';
+    window.addEventListener("scroll", () => {
+        navbar?.classList.toggle("scrolled", window.scrollY > 20);
+    });
 
-                eventCard.innerHTML = `
-                    <div class="event-image"></div>
-                    <div class="event-details">
-                        <span class="event-date">${event.date}</span>
-                        <h3>${event.name}</h3>
-                        <div class="event-location">📍 ${event.location}</div>
-                        <div class="event-price">$${event.price}</div>
-                        <p style="margin-bottom:10px;">${event.description}</p>
-                        <button class="btn-book" onclick='bookEvent(${JSON.stringify(event)})'>Book Now</button>
-                    </div>
-                `;
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const filter = button.dataset.filter;
 
-                eventsGrid.appendChild(eventCard);
+            filterButtons.forEach((item) => item.classList.remove("active"));
+            button.classList.add("active");
+
+            galleryItems.forEach((item) => {
+                const shouldShow = filter === "all" || item.dataset.category === filter;
+                item.classList.toggle("hidden", !shouldShow);
             });
+        });
+    });
 
-        } catch (error) {
-            console.error("Error fetching events:", error);
-        }
-    }
+    galleryItems.forEach((item) => {
+        item.addEventListener("click", () => {
+            const image = item.querySelector("img");
+            if (!image || !lightbox || !lightboxImg) return;
 
-    // =========================
-    // LOGIN (SIMULATION)
-    // =========================
-    function initGoogleLogin() {
-        const mockUser = {
-            email: 'user@gmail.com',
-            name: 'Demo User',
-            picture: 'https://ui-avatars.com/api/?name=Demo+User'
-        };
+            lightboxImg.src = image.src;
+            lightboxImg.alt = image.alt;
+            lightbox.classList.add("open");
+        });
+    });
 
-        currentUser = mockUser;
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-        updateUIForLoggedInUser();
-        closeModal('loginModal');
-
-        alert("Logged in successfully!");
-    }
-
-    function updateUIForLoggedInUser() {
-        document.getElementById('navLoginBtn').style.display = 'none';
-
-        const userProfile = document.getElementById('userProfile');
-        userProfile.classList.add('active');
-
-        document.getElementById('userName').textContent = currentUser.name;
-        document.getElementById('userAvatar').src = currentUser.picture;
-    }
-
-    function logout() {
-        currentUser = null;
-        localStorage.removeItem('currentUser');
-
-        document.getElementById('navLoginBtn').style.display = 'block';
-        document.getElementById('userProfile').classList.remove('active');
-
-        alert("Logged out!");
-    }
-
-    // =========================
-    // BOOK EVENT
-    // =========================
-    function bookEvent(event) {
-        selectedEvent = event;
-
-        if (!currentUser) {
-            openModal('loginModal');
-            alert("Please login first!");
-            return;
-        }
-
-        // Pre-fill form
-        document.getElementById('bookingName').value = currentUser.name;
-        document.getElementById('bookingEmail').value = currentUser.email;
-
-        openModal('bookingModal');
-    }
-
-    // =========================
-    // SUBMIT BOOKING
-    // =========================
-    document.getElementById('ticketBookingForm').addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        const booking = {
-            eventName: selectedEvent.name,
-            eventDate: selectedEvent.date,
-            eventLocation: selectedEvent.location,
-            userName: document.getElementById('bookingName').value,
-            userEmail: document.getElementById('bookingEmail').value,
-            userPhone: document.getElementById('bookingPhone').value,
-            quantity: parseInt(document.getElementById('ticketQuantity').value),
-            totalPrice: selectedEvent.price * parseInt(document.getElementById('ticketQuantity').value)
-        };
-
-        try {
-            await fetch("http://localhost:8080/api/bookings", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(booking)
-            });
-
-            alert("Booking Successful!");
-            closeModal('bookingModal');
-
-        } catch (error) {
-            console.error("Booking failed:", error);
+    lightboxClose?.addEventListener("click", () => lightbox?.classList.remove("open"));
+    lightbox?.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+            lightbox.classList.remove("open");
         }
     });
 
-    // =========================
-    // MODALS
-    // =========================
-    function openModal(id) {
-        document.getElementById(id).classList.add('active');
-    }
+    contactForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        formSuccess.style.display = "block";
+        contactForm.reset();
+        window.setTimeout(() => {
+            formSuccess.style.display = "none";
+        }, 4000);
+    });
 
-    function closeModal(id) {
-        document.getElementById(id).classList.remove('active');
-    }
+    const statObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
 
-    // =========================
-    // EVENT LISTENERS
-    // =========================
-    document.getElementById('navLoginBtn').addEventListener('click', () => openModal('loginModal'));
-    document.getElementById('googleLoginBtn').addEventListener('click', initGoogleLogin);
-    document.getElementById('logoutBtn').addEventListener('click', logout);
+            const stat = entry.target;
+            const target = Number(stat.dataset.target || 0);
+            const duration = 1100;
+            const start = performance.now();
 
-    // =========================
-    // START APP
-    // =========================
-    initializeApp();
+            function tick(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                stat.textContent = Math.floor(progress * target);
+                if (progress < 1) {
+                    requestAnimationFrame(tick);
+                }
+            }
 
+            requestAnimationFrame(tick);
+            observer.unobserve(stat);
+        });
+    }, { threshold: 0.6 });
+
+    document.querySelectorAll(".stat-num").forEach((stat) => statObserver.observe(stat));
 });
