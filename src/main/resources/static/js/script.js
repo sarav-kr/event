@@ -60,13 +60,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    contactForm?.addEventListener("submit", (event) => {
+    contactForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
-        formSuccess.style.display = "block";
-        contactForm.reset();
-        window.setTimeout(() => {
-            formSuccess.style.display = "none";
-        }, 4000);
+        const submitButton = document.getElementById("submitBtn");
+        const buttonText = submitButton?.querySelector(".btn-text");
+        const buttonLoader = submitButton?.querySelector(".btn-loader");
+
+        const inquiry = {
+            firstName: document.getElementById("fname").value,
+            lastName: document.getElementById("lname").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            eventType: document.getElementById("eventType").value,
+            eventDate: document.getElementById("eventDate").value,
+            message: document.getElementById("message").value
+        };
+
+        submitButton.disabled = true;
+        buttonText.style.display = "none";
+        buttonLoader.style.display = "inline";
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(inquiry)
+            });
+
+            if (!response.ok) {
+                throw new Error("Unable to submit enquiry");
+            }
+
+            formSuccess.textContent = "✦ Thank you! We'll be in touch within 24 hours.";
+            formSuccess.style.display = "block";
+            contactForm.reset();
+        } catch (error) {
+            formSuccess.textContent = "We could not send your enquiry. Please try again.";
+            formSuccess.style.display = "block";
+        } finally {
+            submitButton.disabled = false;
+            buttonText.style.display = "inline";
+            buttonLoader.style.display = "none";
+
+            window.setTimeout(() => {
+                formSuccess.style.display = "none";
+            }, 4000);
+        }
     });
 
     const statObserver = new IntersectionObserver((entries, observer) => {
